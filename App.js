@@ -1,39 +1,68 @@
-import {Button, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, FlatList, StyleSheet, TextInput, View} from 'react-native';
 import {useState} from "react";
+import GoalItem from "./components/GoalItem";
 
 export default function App() {
     const [enteredGoal, setEnteredGoal] = useState('')
     const [courseGoals, setCourseGoals] = useState([
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Buy milk and bread',
-        'Learn React Native'
+        {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Buy milk and bread',
+            id: Math.random().toString()
+        }, {
+            text: 'Learn React Native',
+            id: Math.random().toString()
+        }
     ])
 
     function addGoalHandler() {
         setCourseGoals(prevState => [
             ...prevState,
-            enteredGoal
+            {
+                text: enteredGoal,
+                id: Math.random().toString()
+            }
         ]);
         setEnteredGoal('')
     }
@@ -48,15 +77,13 @@ export default function App() {
                 <Button title='Add Goal' onPress={addGoalHandler}/>
             </View>
             <View style={goalsContainer}>
-                <ScrollView alwaysBounceVertical={false}>
-                    {
-                        courseGoals.map((goal, index) =>
-                            <View key={index} style={goalItem}>
-                                <Text style={goalItemText}>{goal}</Text>
-                            </View>
-                        )
-                    }
-                </ScrollView>
+                <FlatList data={courseGoals}
+                          renderItem={itemData =>
+                              <GoalItem itemData={itemData}/>
+                          }
+                          alwaysBounceVertical={false}
+                          keyExtractor={(item) => item.id}
+                />
             </View>
         </View>
     );
@@ -66,9 +93,7 @@ const {
         appContainer,
         inputContainer,
         textInput,
-        goalsContainer,
-        goalItem,
-        goalItemText
+        goalsContainer
     } = StyleSheet.create({
         appContainer: {
             flex: 1,
@@ -94,14 +119,5 @@ const {
         goalsContainer: {
             flex: 5
         },
-        goalItem: {
-            margin: 8,
-            padding: 8,
-            borderRadius: 8,
-            backgroundColor: '#5e0acc',
-        },
-        goalItemText: {
-            color: 'white'
-        }
     })
 ;
