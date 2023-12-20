@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, View} from 'react-native';
+import {Button, FlatList, StyleSheet, View} from 'react-native';
 import {useState} from "react";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
@@ -9,52 +9,11 @@ export default function App() {
             text: 'Buy milk and bread',
             id: Math.random().toString()
         }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
-            text: 'Buy milk and bread',
-            id: Math.random().toString()
-        }, {
             text: 'Learn React Native',
             id: Math.random().toString()
         }
     ])
+    const [modalIsVisible, setModalIsVisible] = useState(false)
 
     const deleteGoal = (id) => {
         setCourseGoals(prevState => prevState.filter(goal => goal.id !== id))
@@ -68,11 +27,23 @@ export default function App() {
                 id: Math.random().toString()
             }
         ]);
+        setModalHandler()
+    }
+
+    const setModalHandler = () => {
+        setModalIsVisible(prevState => !prevState)
     }
 
     return (
         <View style={appContainer}>
-            <GoalInput onAddGoal={addGoalHandler}/>
+            <View style={addNewGoalButton}>
+                <Button title='Add New Goal'
+                        color='#5e0acc'
+                        onPress={setModalHandler}/>
+            </View>
+            <GoalInput onAddGoal={addGoalHandler}
+                       setVisible={setModalHandler}
+                       visible={modalIsVisible}/>
             <View style={goalsContainer}>
                 <FlatList data={courseGoals}
                           renderItem={itemData =>
@@ -87,15 +58,19 @@ export default function App() {
 }
 
 const {
-        appContainer,
-        goalsContainer
-    } = StyleSheet.create({
-        appContainer: {
-            flex: 1,
-            padding: 50,
-            paddingHorizontal: 16
-        },
-        goalsContainer: {
-            flex: 5
-        },
-    })
+    appContainer,
+    goalsContainer,
+    addNewGoalButton
+} = StyleSheet.create({
+    appContainer: {
+        flex: 1,
+        padding: 50,
+        paddingHorizontal: 16,
+    },
+    goalsContainer: {
+        flex: 5
+    },
+    addNewGoalButton: {
+        marginBottom: 16
+    }
+})
