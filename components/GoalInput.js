@@ -15,7 +15,7 @@ const GoalInput = ({onAddGoal, visible, setVisible}) => {
     return (
         <Modal visible={visible} animationType='slide'>
             <View style={inputContainer}>
-                <Image source={require('../assets/images/goal.png')} />
+                <Image style={image} source={require('../assets/images/goal.png')} />
                 <TextInput style={textInput}
                            value={enteredGoal}
                            onChangeText={setEnteredGoal}
@@ -48,23 +48,25 @@ const {
     buttonContainer,
     blueButton,
     textButton,
-    redButton
+    redButton,
+    image
 } = StyleSheet.create({
     inputContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 24,
         padding: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc'
+        backgroundColor: '#311b6b'
     },
     textInput: {
         borderWidth: 1,
-        borderColor: '#cccccc',
+        borderColor: '#e6d8fa',
+        backgroundColor: '#e6d8fa',
+        color: '#120438',
         width: '100%',
+        borderRadius: 6,
         marginBottom: 16,
-        padding: 10
+        padding: 16
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -91,6 +93,11 @@ const {
     },
     textButton: {
         color: 'white'
+    },
+    image: {
+        width: 100,
+        height: 100,
+        margin: 20
     }
 })
 
