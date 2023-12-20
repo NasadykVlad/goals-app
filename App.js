@@ -1,9 +1,31 @@
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useState} from "react";
 
 export default function App() {
     const [enteredGoal, setEnteredGoal] = useState('')
     const [courseGoals, setCourseGoals] = useState([
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
+        'Buy milk and bread',
         'Buy milk and bread',
         'Learn React Native'
     ])
@@ -26,13 +48,15 @@ export default function App() {
                 <Button title='Add Goal' onPress={addGoalHandler}/>
             </View>
             <View style={goalsContainer}>
-                {
-                    courseGoals.map((goal, index) =>
-                        <View key={index} style={goalItem}>
-                            <Text style={goalItemText}>{goal}</Text>
-                        </View>
-                    )
-                }
+                <ScrollView alwaysBounceVertical={false}>
+                    {
+                        courseGoals.map((goal, index) =>
+                            <View key={index} style={goalItem}>
+                                <Text style={goalItemText}>{goal}</Text>
+                            </View>
+                        )
+                    }
+                </ScrollView>
             </View>
         </View>
     );
