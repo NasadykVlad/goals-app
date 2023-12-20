@@ -56,6 +56,10 @@ export default function App() {
         }
     ])
 
+    const deleteGoal = (id) => {
+        setCourseGoals(prevState => prevState.filter(goal => goal.id !== id))
+    }
+
     function addGoalHandler(text) {
         setCourseGoals(prevState => [
             ...prevState,
@@ -72,7 +76,7 @@ export default function App() {
             <View style={goalsContainer}>
                 <FlatList data={courseGoals}
                           renderItem={itemData =>
-                              <GoalItem itemData={itemData}/>
+                              <GoalItem itemData={itemData} onDeleteGoal={deleteGoal}/>
                           }
                           alwaysBounceVertical={false}
                           keyExtractor={(item) => item.id}

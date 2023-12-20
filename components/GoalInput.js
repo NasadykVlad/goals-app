@@ -6,8 +6,10 @@ const GoalInput = ({onAddGoal}) => {
     const [enteredGoal, setEnteredGoal] = useState('')
 
     const addGoalHandler = () => {
-        onAddGoal(enteredGoal);
-        setEnteredGoal('')
+        if (enteredGoal.length > 2) {
+            onAddGoal(enteredGoal);
+            setEnteredGoal('')
+        }
     }
 
     return (
